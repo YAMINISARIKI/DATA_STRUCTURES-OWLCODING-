@@ -1,3 +1,5 @@
+//Time complexity : O(n*log n)
+//space complexity : O(n)
 #include<bits/stdc++.h>
 using namespace std;
 void Merge(int *a,int l,int mid,int h)
