@@ -9,43 +9,52 @@ struct Node{
         next = nullptr;
     }
 };
-Node* insertathead(Node* element,Node* head)
+Node* insertathead(Node* head,Node* ele)
 {
-    // Node* temp = head;
-    element->next = head;
-    head = element;
-    
-    return element;
+    ele->next = head;
+    head = ele;
+    return ele;
 }
-void insertatend(Node* element1,Node* head)
+void insertatend(Node* head,Node* ele1)
 {
+    if(head==nullptr)return;
     Node* temp = head;
     while(temp->next!=nullptr)
     {
         temp = temp->next;
     }
-    temp->next = element1;
-    // return element1;
+    temp->next = ele1;
 }
-
+void insertatposition(Node* head,Node* ele2,int position)
+{
+    if(head==nullptr)return;
+    Node* temp = head;
+    int c=0;
+    while(c<position-1)
+    {
+        temp = temp->next;
+        c++;
+    }
+    ele2->next = temp->next;
+    temp->next = ele2;
+}
 void print(Node* head)
 {
-    Node* temp = head;
     if(head==nullptr)
     {
         return;
     }
+    Node* temp = head;
     while(temp!=nullptr)
     {
         cout<<temp->data<<" ";
         temp = temp->next;
     }
 }
+
 int main()
 {
-    int n;
-    cin>>n;
-    vector<int>v={2,4,6,8,10};
+    vector<int>v = {1,2,3,4,5};
     Node* head = new Node(v[0]);
     Node* temp = head;
     for(int i=1;i<v.size();i++)
@@ -53,10 +62,12 @@ int main()
         temp->next = new Node(v[i]);
         temp = temp->next;
     }
-    // print(head);
-    Node* element = new Node(0);
-    head = insertathead(element,head);
-    Node* element1 = new Node(11);
-    insertatend(element1,head);
+    Node* ele = new Node(0);
+    head = insertathead(head,ele);
+    Node* ele1 = new Node(6);
+    insertatend(head,ele1);
+    Node* ele2 = new Node(69);
+    int position = 3;
+    insertatposition(head,ele2,position);
     print(head);
 }
